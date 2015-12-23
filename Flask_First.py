@@ -20,9 +20,13 @@ def login_required(f):
 def main_page():
     return render_template('main.html')
 
-@app.route('/kaja')
+@app.route('/about')
+def about_us():
+    return render_template('about.html')
+
+@app.route('/user_data')
 @login_required
-def kajaji():
+def user():
     return render_template('user_data.html')
 
 # route for handling the login page logic
@@ -34,7 +38,7 @@ def login():
             error = 'Invalid Credentials. Please try again.'
         else:
             session['logged_in']=True
-            return redirect(url_for('kajaji'))
+            return redirect(url_for('user'))
     return render_template('login.html', error=error)
 
 @app.route('/logout')
